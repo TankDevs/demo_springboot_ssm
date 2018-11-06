@@ -4,9 +4,13 @@ import com.zlh.demo_springboot_ssm.domain.PersonInfo;
 import com.zlh.demo_springboot_ssm.mapper.PersonInfoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @Controller
 public class PersonInfoController {
@@ -20,26 +24,28 @@ public class PersonInfoController {
         return "Hello,@Controller+@ResponseBodyD!!";
     }
 
-    @RequestMapping("/home")
-    public String index() {
-        System.out.println("public String index()");
-        String url="/index.html";
-        return "/index";
+    @RequestMapping("/person-index")
+    public String personIndex() {
+        return "person-index";
     }
 
-//    @RequestMapping("/home")
-//    public List<PersonInfo> selectAll() throws Exception {
-//        //List<PersonInfo> perList = personInfoMapper.selectAll();
-//        //return perList;
-//        return "index";
-//    }
+    @RequestMapping("/queryById")
+    public ModelAndView queryById(HttpServletRequest request) {
 
-    @RequestMapping(value = "/personInfoIndex")
-    @ResponseBody
-    public String show(@RequestParam(value = "id")String id){
-        PersonInfo user = personInfoMapper.selectById(id);
-        if(null != user)
-            return user.getId()+"/"+user.getName()+"/"+user.getSex();
-        else return "null";
+        String id = request.getParameter("id");
+        PersonInfo person = personInfoMapper.selectById(id);
+        ModelMap map=new ModelMap();
+        map.put("person",person);
+        return  new ModelAndView("person-index",map);
     }
+
+    //配置多个页面
+    @RequestMapping({"/queryAll","/persons"})
+    public ModelAndView getPersons() {
+        ModelMap map=new ModelMap();
+        List<PersonInfo> persons = personInfoMapper.selectAll();
+        map.put("personList",persons);
+        return new ModelAndView("persons",map);
+    }
+
 }

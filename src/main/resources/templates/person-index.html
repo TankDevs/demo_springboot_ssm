@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<!--添加thymeleaf-->
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <title>index</title>
+</head>
+<body>
+<script>
+    var name=${person.id};
+
+</script>
+<form action="queryById">
+    请输入id：<input name="id">
+    <input type="submit" value="查询">
+</form>
+<form action="queryAll">
+    <input type="submit" value="查询所有">
+</form>
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>姓名</th>
+        <th>性别</th>
+        <th>年龄</th>
+    </tr>
+
+    <tr>
+        <td><span th:text="${person?.id}"></span></td>
+        <td><span th:text="${person?.name}"></span></td>
+        <td><span th:text="${person?.sex}"></span></td>
+        <td><span th:text="${person?.age}"></span></td>
+    </tr>
+</table>
+</body>
+</html>
