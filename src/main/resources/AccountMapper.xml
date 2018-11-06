@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zlh.demo_springboot_ssm.mapper.AccountMapper">
+  <resultMap id="BaseResultMap" type="com.zlh.demo_springboot_ssm.domain.Account">
+    <id column="accoun_id" jdbcType="VARCHAR" property="accounId" />
+    <result column="money" jdbcType="INTEGER" property="money" />
+    <result column="person_id" jdbcType="VARCHAR" property="personId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    accoun_id, money, person_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from account
+    where accoun_id = #{accounId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from account
+    where accoun_id = #{accounId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zlh.demo_springboot_ssm.domain.Account">
+    insert into account (accoun_id, money, person_id
+      )
+    values (#{accounId,jdbcType=VARCHAR}, #{money,jdbcType=INTEGER}, #{personId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zlh.demo_springboot_ssm.domain.Account">
+    insert into account
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="accounId != null">
+        accoun_id,
+      </if>
+      <if test="money != null">
+        money,
+      </if>
+      <if test="personId != null">
+        person_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="accounId != null">
+        #{accounId,jdbcType=VARCHAR},
+      </if>
+      <if test="money != null">
+        #{money,jdbcType=INTEGER},
+      </if>
+      <if test="personId != null">
+        #{personId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zlh.demo_springboot_ssm.domain.Account">
+    update account
+    <set>
+      <if test="money != null">
+        money = #{money,jdbcType=INTEGER},
+      </if>
+      <if test="personId != null">
+        person_id = #{personId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where accoun_id = #{accounId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zlh.demo_springboot_ssm.domain.Account">
+    update account
+    set money = #{money,jdbcType=INTEGER},
+      person_id = #{personId,jdbcType=VARCHAR}
+    where accoun_id = #{accounId,jdbcType=VARCHAR}
+  </update>
+</mapper>
