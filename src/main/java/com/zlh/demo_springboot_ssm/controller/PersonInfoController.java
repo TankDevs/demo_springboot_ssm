@@ -1,13 +1,12 @@
 package com.zlh.demo_springboot_ssm.controller;
 
 import com.zlh.demo_springboot_ssm.domain.PersonInfo;
-import com.zlh.demo_springboot_ssm.mapper.AccountMapper;
 import com.zlh.demo_springboot_ssm.mapper.PersonInfoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class PersonInfoController {
@@ -18,7 +17,7 @@ public class PersonInfoController {
     @RequestMapping("/resbody")
     @ResponseBody
     public  String resBody() {
-        return "Hello,@Controller+@ResponseBody";
+        return "Hello,@Controller+@ResponseBodyD!!";
     }
 
     @RequestMapping("/home")
