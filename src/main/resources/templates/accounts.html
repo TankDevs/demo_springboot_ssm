@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+    <meta charset="UTF-8">
+    <title>所有账户信息</title>
+</head>
+<body>
+<script>
+
+</script>
+
+<table border="1">
+    <tr>
+        <th>账户ID</th>
+        <th>金额</th>
+        <th>用户ID</th>
+    </tr>
+
+    <tr th:each="account:${accountList}">
+        <td><span th:text="${account?.accounId}"></span></td>
+        <td><span th:text="${account?.money}"></span></td>
+        <td><span th:text="${account?.personId}"></span></td>
+    </tr>
+</table>
+
+
+</body>
+</html>
