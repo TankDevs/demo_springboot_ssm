@@ -15,7 +15,7 @@ import java.util.List;
 @Controller
 public class AccoutController {
 
-    @Autowired
+    @Autowired(required = false)
     private AccountMapper accountMapper;
 
     @RequestMapping("/accounts")

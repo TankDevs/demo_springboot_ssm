@@ -15,12 +15,13 @@ import java.util.List;
 @Controller
 public class PersonInfoController {
 
-    @Autowired
+    @Autowired(required = false)
     private PersonInfoMapper personInfoMapper;
 
+    //替换了页面中的body内容，head内容也被清空了？？
     @RequestMapping("/resbody")
     @ResponseBody
-    public  String resBody() {
+    public String resBody() {
         return "Hello,@Controller+@ResponseBodyD!!";
     }
 
@@ -34,18 +35,48 @@ public class PersonInfoController {
 
         String id = request.getParameter("id");
         PersonInfo person = personInfoMapper.selectById(id);
-        ModelMap map=new ModelMap();
-        map.put("person",person);
-        return  new ModelAndView("person-index",map);
+        ModelMap map = new ModelMap();
+        map.put("person", person);
+        return new ModelAndView("person-index", map);
+        //return getPersons();
     }
 
     //配置多个页面
-    @RequestMapping({"/queryAll","/persons"})
+    @RequestMapping({"/queryAll", "/persons"})
     public ModelAndView getPersons() {
-        ModelMap map=new ModelMap();
+        ModelMap map = new ModelMap();
         List<PersonInfo> persons = personInfoMapper.selectAll();
-        map.put("personList",persons);
-        return new ModelAndView("persons",map);
+        map.put("personList", persons);
+        return new ModelAndView("persons", map);
+    }
+    /* for test
+    @RequestMapping("/accounts")
+    public ModelAndView test1() {
+        return new ModelAndView("index");
+        //return getPersons();
     }
 
+    @RequestMapping("/accounts/mi")
+    public ModelAndView test2() {
+        return new ModelAndView("index");
+        //return getPersons();
+    }
+    @RequestMapping("/accounts/accounts/mi")
+    public ModelAndView qtest3() {
+        return new ModelAndView("index");
+        //return getPersons();
+    }
+
+    @RequestMapping("/accounts/persons")
+    public ModelAndView test4() {
+        return new ModelAndView("person-index");
+    }
+
+    @RequestMapping("/accounts/person-index")
+    public ModelAndView test5() {
+        return new ModelAndView("persons");
+    }
+
+
+     */
 }

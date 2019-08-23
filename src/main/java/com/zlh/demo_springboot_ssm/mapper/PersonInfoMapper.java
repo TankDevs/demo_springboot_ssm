@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.*;
 import java.util.List;
 //在此添加注解@Mapper或者直接启动类上面添加注解@MapperScan("com.zlh.demo_springboot_ssm.mapper")
 // 建议使用后者，不然每个mapper加个注解也挺麻烦的
-@Mapper
+//@Mapper
 public interface PersonInfoMapper {
 
     @Select("select * from person_info")

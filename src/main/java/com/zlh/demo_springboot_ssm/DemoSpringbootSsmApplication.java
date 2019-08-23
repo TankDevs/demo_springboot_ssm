@@ -1,15 +1,22 @@
 package com.zlh.demo_springboot_ssm;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
+@MapperScan("com.zlh.demo_springboot_ssm.mapper")
 public class DemoSpringbootSsmApplication {
 
     public static void main(String[] args) {
 
         SpringApplication.run(DemoSpringbootSsmApplication.class, args);
-        System.out.println("+++++++++++++++++++++++ "+DemoSpringbootSsmApplication.class.getClassLoader().getResource("").getPath());
-
+        try {
+            System.out.println("+++++++++++++++++++++++ " + DemoSpringbootSsmApplication.class.getClassLoader().getResource("").getPath());
+        }
+        catch (NullPointerException e)
+        {
+            System.out.println(e.getMessage());
+        }
     }
 }

@@ -1,15 +1,33 @@
 <!DOCTYPE html>
 <!--添加thymeleaf-->
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
 <head>
     <meta charset="UTF-8">
     <title>index</title>
 </head>
 <body>
 <script>
-    alert("hello index！！");
+    //alert("hello index！！");
+
 </script>
-hello index！！
-</table>
+<p></p>
+<a href="person-index">
+    查找人员
+</a>
+<p></p>
+<a href="persons">
+    显示所有人员
+</a>
+<p></p>
+<a href="accounts">
+    显示所有账户信息。
+</a>
+<p></p>
+<a th:href="@{https://www.e-learn.cn/thymeleaf/}">thymeleaf</a>
+<form>
+
+</form>
 </body>
 </html>
