@@ -1,6 +1,7 @@
 package com.zlh.demo_springboot_ssm.controller;
 
 import com.zlh.demo_springboot_ssm.domain.PersonInfo;
+import com.zlh.demo_springboot_ssm.mapper.PersonAccountMapper;
 import com.zlh.demo_springboot_ssm.mapper.PersonInfoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +18,9 @@ public class PersonInfoController {
 
     @Autowired(required = false)
     private PersonInfoMapper personInfoMapper;
+
+    @Autowired(required = false)
+    private PersonAccountMapper personAccountMapper;
 
     //替换了页面中的body内容，head内容也被清空了？？
     @RequestMapping("/resbody")
@@ -40,6 +44,21 @@ public class PersonInfoController {
         return new ModelAndView("person-index", map);
         //return getPersons();
     }
+    @RequestMapping("/PersonAccount")
+    public ModelAndView PersonAccount() {
+        List< PersonInfo> persons = personAccountMapper.selectAll();
+        ModelMap map = new ModelMap();
+        map.put("personList", persons);
+        return new ModelAndView("personAccount", map);
+    }
+    @RequestMapping("/PersonAccountQueryById")
+    public ModelAndView PersonAccountQueryById(HttpServletRequest request) {
+        String id = request.getParameter("id");
+        PersonInfo person = personAccountMapper.selectById(id);
+        ModelMap map = new ModelMap();
+        map.put("person", person);
+        return new ModelAndView("personAccount", map);
+    }
 
     //配置多个页面
     @RequestMapping({"/queryAll", "/persons"})
@@ -49,6 +68,8 @@ public class PersonInfoController {
         map.put("personList", persons);
         return new ModelAndView("persons", map);
     }
+
+
     /* for test
     @RequestMapping("/accounts")
     public ModelAndView test1() {

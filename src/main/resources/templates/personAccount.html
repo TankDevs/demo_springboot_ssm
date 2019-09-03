@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+    <meta charset="UTF-8">
+    <title>所有用户信息</title>
+</head>
+<body>
+<script>
+
+</script>
+<form action="queryById">
+    请输入id：
+    <label>
+        <input name="id">
+    </label>
+    <input type="submit" value="查询">
+
+</form>
+<form action="PersonAccount">
+    <input type="submit" value="查询所有">
+</form>
+<table>
+    <tr>
+
+        <th>姓名</th>
+        <th>性别</th>
+        <th>年龄</th>
+        <th>余额</th>
+    </tr>
+
+    <tr th:each="person:${personList}">
+        <td><span th:text="${person?.name}"></span></td>
+        <td><span th:text="${person?.sex}"></span></td>
+        <td><span th:text="${person?.age}"></span></td>
+        <td th:each="account:${person?.accountList}">
+            <span th:text="${account?.money}"></span>
+        </td>
+    </tr>
+</table>
+
+
+</body>
+</html>
