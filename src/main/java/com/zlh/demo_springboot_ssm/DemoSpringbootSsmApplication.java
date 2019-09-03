@@ -4,8 +4,8 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication
 @MapperScan("com.zlh.demo_springboot_ssm.mapper")
+@SpringBootApplication
 public class DemoSpringbootSsmApplication {
 
     public static void main(String[] args) {

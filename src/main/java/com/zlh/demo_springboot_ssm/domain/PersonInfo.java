@@ -1,5 +1,7 @@
 package com.zlh.demo_springboot_ssm.domain;
 
+import java.util.List;
+
 public class PersonInfo {
     private String id;
 
@@ -8,6 +10,19 @@ public class PersonInfo {
     private String sex;
 
     private Integer age;
+
+    //一个人有多个账户，一对多的关系
+    private List<Account>   accountList;
+
+    public List<Account> getAccountList() {
+        return accountList;
+    }
+
+    public void setAccountList(List<Account> accountList) {
+        this.accountList = accountList;
+    }
+
+
 
     public String getId() {
         return id;
