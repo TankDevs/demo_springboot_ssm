@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <title>个人信息</title>
 </head>
+
 <body>
 <script>
 </script>
@@ -35,5 +36,95 @@
         <td><span th:text="${person?.age}"></span></td>
     </tr>
 </table>
+
+<input type="button" value="发送http请求" onclick="getData()">
+<script type="text/javascript">
+    //XmlHttpRequest对象
+    function createXmlHttpRequest() {
+        if (window.ActiveXObject) { //如果是IE浏览器
+            alert("IE");
+            return new ActiveXObject("Microsoft.XMLHTTP");
+        } else if (window.XMLHttpRequest) { //非IE浏览器
+            alert("非IE");
+            return new XMLHttpRequest();
+        }
+    }
+
+    function getData() {
+        var httpRequest = new XMLHttpRequest();
+
+        var url = "http://127.0.0.1:8000/getUser";
+        //get方式，参数必须写在url中，放到send参数中无效
+        //httpRequest.open("get",url+"?name=李思思&sex=女&age=18");
+        //post/put方式，参数是可放在url中，也可以放在send参数中，如果二者都有，则合并参数，并以url中的优先
+        httpRequest.open("post", url + "?name=李思思&age=18");
+        var data = new FormData();
+        data.append("name", "张三");
+        data.append("sex", "男");
+        data.append("address", "China");
+        httpRequest.send(data);
+        // ====XMLHttpRequest.readyState
+        // 0	UNSENT	代理被创建，但尚未调用 open() 方法。
+        // 1	OPENED	open() 方法已经被调用。
+        // 2	HEADERS_RECEIVED	send() 方法已经被调用，并且头部和状态已经可获得。
+        // 3	LOADING	下载中； responseText 属性已经包含部分数据。
+        // 4	DONE	下载操作已完成。
+        // ====XMLHttpRequest.status
+        // Informational responses (100–199),
+        // Successful responses (200–299),
+        // Redirects (300–399),
+        // Client errors (400–499),
+        // and Server errors (500–599).
+        httpRequest.onreadystatechange = function () {
+            if (httpRequest.readyState == 4) {
+                alert(httpRequest.status + "   " + httpRequest.responseText);
+            }
+        }
+    }
+
+    function getSystemParam() {
+        var xhr = new XMLHttpRequest();
+        var url = "http://139.9.236.16:6010/ward/proxy/sys/getSystemParam\n";
+        xhr.open("post", url);
+        var request = "{\n" +
+            "  \"body\": {\n" +
+            "    \"deviceType\": \"1\",\n" +
+            "    \"extraMap\": {}\n" +
+            "  },\n" +
+            "  \"header\": {\n" +
+            "    \"appCode\": \"string\",\n" +
+            "    \"appTypeCode\": \"string\",\n" +
+            "    \"areaId\": \"string\",\n" +
+            "    \"deviceId\": \"string\",\n" +
+            "    \"deviceType\": \"string\",\n" +
+            "    \"funName\": \"string\",\n" +
+            "    \"hospitalId\": \"string\",\n" +
+            "    \"meId\": \"string\",\n" +
+            "    \"passWord\": \"string\",\n" +
+            "    \"reqTime\": \"string\",\n" +
+            "    \"userId\": \"string\"\n" +
+            "  }\n" +
+            "}";
+        //json字符串必须加这一条内容
+        xhr.setRequestHeader('content-type', 'application/json');
+        xhr.send(request);
+        alert(request);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4) {
+                alert(xhr.responseText);
+            }
+        }
+
+    }
+
+    // function fetchData () {
+    //     var url ="http://127.0.0.1:8000/getUser";
+    //     fetch(url)
+    //         .then(data =>{ return data});
+    //     alert(data);
+    // }
+
+</script>
+
 </body>
 </html>

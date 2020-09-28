@@ -29,6 +29,16 @@ public class PersonInfoController {
         return "Hello,@Controller+@ResponseBodyD!!";
     }
 
+    @RequestMapping("/getUser")
+    @ResponseBody
+    public String resBody(HttpServletRequest request) {
+        String userName = request.getParameter("name");
+        String userSex = request.getParameter("sex");
+        String age = request.getParameter("age");
+        String address = request.getParameter("address");
+        return "getUser===" + userName + "--" + userSex + "--" + age + "--" + address;
+    }
+
     @RequestMapping("/person-index")
     public String personIndex() {
         return "person-index";
@@ -44,13 +54,15 @@ public class PersonInfoController {
         return new ModelAndView("person-index", map);
         //return getPersons();
     }
+
     @RequestMapping("/PersonAccount")
     public ModelAndView PersonAccount() {
-        List< PersonInfo> persons = personAccountMapper.selectAll();
+        List<PersonInfo> persons = personAccountMapper.selectAll();
         ModelMap map = new ModelMap();
         map.put("personList", persons);
         return new ModelAndView("personAccount", map);
     }
+
     @RequestMapping("/PersonAccountQueryById")
     public ModelAndView PersonAccountQueryById(HttpServletRequest request) {
         String id = request.getParameter("id");
