@@ -10,7 +10,7 @@
 <body>
 <script>
 </script>
-<form action="queryById">
+<form action="queryById" method="post">
     请输入id：
     <label>
         <input name="id">
@@ -18,7 +18,7 @@
     <input type="submit" value="查询">
 
 </form>
-<form action="queryAll">
+<form action="queryAll" method="post">
     <input type="submit" value="查询所有">
 </form>
 <table>
@@ -57,11 +57,11 @@
         //get方式，参数必须写在url中，放到send参数中无效
         //httpRequest.open("get",url+"?name=李思思&sex=女&age=18");
         //post/put方式，参数是可放在url中，也可以放在send参数中，如果二者都有，则合并参数，并以url中的优先
-        httpRequest.open("post", url + "?name=李思思&age=18");
+        httpRequest.open("post", url + "?name=王五&age=18");
         var data = new FormData();
         data.append("name", "张三");
-        data.append("sex", "男");
-        data.append("address", "China");
+        //data.append("sex", "男");
+        //data.append("address", "China");
         httpRequest.send(data);
         // ====XMLHttpRequest.readyState
         // 0	UNSENT	代理被创建，但尚未调用 open() 方法。
