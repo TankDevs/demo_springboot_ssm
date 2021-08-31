@@ -1,13 +1,15 @@
 package com.zlh.mq;
 
-import org.springframework.boot.SpringApplication;
+import  com.zlh.comm.MyLog;
 
 public class testApp {
     public static void main(String[] args) {
         System.out.println("********************");
         try {
-            System.out.println("hello world");
-            System.out.println("bye");
+            MyLog myLog=new MyLog();
+            myLog.logTest();
+
+
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
