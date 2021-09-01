@@ -6,7 +6,8 @@
 
 	<!-- 控制台输出 -->
 	<appender name="console" class="ch.qos.logback.core.ConsoleAppender">
-		<Encoding>UTF-8</Encoding>
+<!--		报错？？：no applicable action for [Encoding], current ElementPath  is [[configuration][appender][Encoding]]-->
+<!--		<Encoding>UTF-8</Encoding>-->
 		<layout class="ch.qos.logback.classic.PatternLayout">
 			<!-- 日志输出格式：%d表示日期时间，%thread表示线程名，%-5level：级别从左显示5个字符宽度 %logger{50} 表示logger名字最长50个字符，否则按照句点分割。 %msg：日志消息，%n是换行符 -->
 			<pattern>
@@ -17,7 +18,7 @@
 
 	<!-- 滚动记录文件，先将日志记录到指定文件，当符合某个条件时，将日志记录到其他文件 -->
 	<appender name="default" class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<Encoding>UTF-8</Encoding>
+<!--		<Encoding>UTF-8</Encoding>-->
 		<!-- 指定日志文件的名称，可不指定，即按滚动规则命名，此中%d%i无效 -->
 		<!-- <file>./logs-back/default-%d{yyyy-MM-dd}-%i.log</file> -->
 		<!-- 当发生滚动时，决定 RollingFileAppender 的行为，涉及文件移动和重命名 TimeBasedRollingPolicy： 最常用的滚动策略，它根据时间来制定滚动策略，既负责滚动也负责出发滚动。 -->
