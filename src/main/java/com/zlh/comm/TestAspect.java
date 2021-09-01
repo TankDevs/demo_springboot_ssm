@@ -1,4 +1,4 @@
-package com.zlh.demo_springboot_ssm.aop;
+package com.zlh.comm;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -9,12 +9,9 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
-import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.HashMap;
-import java.util.Map;
 
 //参考：Spring-AOP之aspectj注解方式
 //https://blog.csdn.net/zhu_tianwei/article/details/43352471
